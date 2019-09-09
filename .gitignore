@@ -446,3 +446,7 @@ obj/
 # End of https://www.gitignore.io/api/git,java,kotlin,windows,android,intellij,androidstudio
 
 
+
+apkKey.jks
+
+
