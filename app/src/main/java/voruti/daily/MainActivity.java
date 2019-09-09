@@ -2,14 +2,91 @@ package voruti.daily;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import alt.android.os.CountDownTimer;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    TextView tvTop;
+    TextView tvBottom;
+    ImageView ivPause;
+
+    boolean paused;
+
+    CountDownTimer cdt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        tvTop = findViewById(R.id.tvTop);
+        tvBottom = findViewById(R.id.tvBottom);
+
+        ivPause = findViewById(R.id.ivPause);
+
+
+        cdt = new CountDownTimer(60000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                SpannableString content = new SpannableString(Long.toString(millisUntilFinished / 1000));
+                content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+
+                tvTop.setText(content);
+                tvBottom.setText(content);
+            }
+
+            public void onFinish() {
+                SpannableString content = new SpannableString("0");
+                content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+
+                tvTop.setText(content);
+                tvBottom.setText(content);
+            }
+
+        };
+
+
+        SpannableString content = new SpannableString("60");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+
+        tvTop.setText(content);
+        tvBottom.setText(content);
+
+
+        tvTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cdt.start();
+                paused = false;
+                ivPause.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        tvBottom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (paused) {
+                    cdt.resume();
+                    paused = false;
+                    ivPause.setVisibility(View.INVISIBLE);
+                } else {
+                    cdt.pause();
+                    paused = true;
+                    ivPause.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
     }
 
 
