@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
         ivPause = findViewById(R.id.ivPause);
 
 
-        cdt = new CountDownTimer(60000, 1000) {
+        cdt = new CountDownTimer(60000, 200) {
 
             public void onTick(long millisUntilFinished) {
-                SpannableString content = new SpannableString(Long.toString(millisUntilFinished / 1000));
+                SpannableString content = new SpannableString(Integer.toString((int) Math.ceil(millisUntilFinished / 1000.0)));
                 content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
 
                 tvTop.setText(content);
