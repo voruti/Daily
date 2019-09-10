@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="@color/colorPrimaryDark"
     tools:context=".MainActivity">
 
     <ImageView
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:rotation="180"
         android:textAlignment="center"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorAccent"
         android:textSize="300sp"
         app:layout_constraintBottom_toTopOf="@id/tvBottom"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -36,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorAccent"
         android:textSize="300sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
